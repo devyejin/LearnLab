@@ -1,0 +1,24 @@
+.container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.todo-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-text {
+  margin-right: auto;
+}
+
+.success-btn,
+.delete-btn {
+  margin-left: 8px;
+  
+}
