@@ -16,11 +16,6 @@
       "completed": false
     },
     {
-      "id": 5,
-      "content": "왜 자동추가되지?",
-      "completed": false
-    },
-    {
       "id": 6,
       "content": "희안하",
       "completed": false
@@ -51,19 +46,9 @@
       "completed": false
     },
     {
-      "id": 19,
-      "content": "ㅠㅠㅠㅠㅠㅠ",
-      "completed": false
-    },
-    {
       "id": 20,
       "content": "ㅇㅇㅇ",
-      "completed": false
-    },
-    {
-      "id": 21,
-      "content": "완성하기",
-      "completed": false
+      "completed": true
     },
     {
       "id": 22,
@@ -71,24 +56,9 @@
       "completed": false
     },
     {
-      "id": 23,
-      "content": "띠용?",
-      "completed": false
-    },
-    {
-      "id": 24,
-      "content": "띠용?",
-      "completed": false
-    },
-    {
-      "id": 25,
-      "content": "띠용?",
-      "completed": false
-    },
-    {
       "id": 26,
       "content": "띠용?",
-      "completed": false
+      "completed": true
     }
   ]
 }

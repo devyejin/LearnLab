@@ -12,6 +12,8 @@ addTodoBtn.addEventListener('click', (e) => addTodo(e));
 // 개별 Todo 요소를 화면에 그리는 함수
 function renderTodo(todo) {
   const todoId = todo.id;
+  const isCompleted = todo.completed;
+
   console.log(typeof todoId);
   console.log('render todo 호출');
   const todoList = document.querySelector('#todo-list');
@@ -22,16 +24,22 @@ function renderTodo(todo) {
 
   const span = document.createElement('span');
   span.setAttribute('class', 'todo-text');
+  if (isCompleted) {
+    span.classList.add('completed');
+  } else {
+    span.classList.remove('completed');
+  }
 
   const completeBtn = document.createElement('button');
   completeBtn.textContent = '완료';
-  completeBtn.setAttribute('class', 'btn btn-primary success-btn');
+  completeBtn.setAttribute('class', 'btn btn-primary');
+  completeBtn.setAttribute('id', 'complete-btn');
+  completeBtn.addEventListener('click', () => toggleComplete(todo));
 
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = '삭제';
   deleteBtn.setAttribute('class', 'btn btn-danger');
   deleteBtn.setAttribute('id', 'del-btn');
-  console.log(deleteBtn);
   deleteBtn.addEventListener('click', () => deleteTodo(todoId));
 
   // const wrapDiv = document.createElement('div');
@@ -81,7 +89,27 @@ async function addTodo(e) {
 }
 
 // Todo 완료 상태 토글 (PATCH 요청)
-async function toggleComplete(id) {}
+async function toggleComplete(todo) {
+  const id = todo.id;
+  const completed = todo.completed;
+
+  try {
+    const response = await fetch(`http://localhost:3000/todos/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json', // Content-Type 헤더 추가
+      },
+      body: JSON.stringify({
+        completed: !completed,
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 // Todo 삭제하기 (DELETE 요청)
 async function deleteTodo(id) {
