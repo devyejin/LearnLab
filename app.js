@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', initTodos);
 const addTodoBtn = document.querySelector('#add-todo');
 addTodoBtn.addEventListener('click', (e) => addTodo(e));
 
+//Todo 전체 삭제 버튼 클릭 이벤트 리스너
+const delTodoAllBtn = document.querySelector('#delete-all');
+delTodoAllBtn.addEventListener('click', deleteAllTodo);
+
 // 개별 Todo 요소를 화면에 그리는 함수
 function renderTodo(todo) {
   const todoId = todo.id;
@@ -43,8 +47,7 @@ function renderTodo(todo) {
   deleteBtn.addEventListener('click', () => deleteTodo(todoId));
 
   const div = document.createElement('div');
-  div.setAttribute('class','input-container');
-  
+  div.setAttribute('class', 'input-container');
 
   li.append(span, completeBtn, deleteBtn); //append만 한줄로 가능
 
@@ -53,14 +56,20 @@ function renderTodo(todo) {
   span.textContent = todo.content;
 }
 
+//Todo 데이터 조회
+async function fetchTodos() {
+  const response = await fetch('http://localhost:3000/todos');
+  const data = await response.json();
+  return data;
+}
+
 // Todo 목록 초기화 (GET 요청)
 async function initTodos() {
   console.log('Hello World');
 
-  const response = await fetch('http://localhost:3000/todos');
-  const data = await response.json();
+  const todos = await fetchTodos();
 
-  data.forEach((todo) => {
+  todos.forEach((todo) => {
     renderTodo(todo);
   });
 }
@@ -69,11 +78,14 @@ async function initTodos() {
 async function addTodo(e) {
   e.preventDefault();
 
-  console.log('추가 버튼 클릭');
-
   const container = document.querySelector('.container');
   const todoInput = container.querySelector('#todo-input');
-  const todo = todoInput.value;
+  const todo = todoInput.value.trim();
+
+  if (!todo) {
+    alert('내용을 입력하세요.');
+    return;
+  }
 
   const response = await fetch(`http://localhost:3000/todos`, {
     method: 'POST',
@@ -128,4 +140,11 @@ async function deleteTodo(id) {
     console.error(error.body);
   }
   console.log('delete 이벤트 발생 이후 ');
+}
+
+//Todo 전체 삭제하기
+async function deleteAllTodo() {
+  confirm('정말로 다 삭제하시겠습니까?');
+
+  const response = await fetch('');
 }
