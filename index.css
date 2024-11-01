@@ -1,16 +1,51 @@
 .container {
   width: 50%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+}
+
+.inner-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 10px;
+}
+
+input {
+  width: 85%;
+  box-sizing: border-box;
+  /* padding: 8px; */
 }
 
 .completed {
   text-decoration: line-through;
 }
 
-.todo-list {
-  display: flex;
+#todo-list {
+  padding-left: 0px;
+  /* display: flex;
   justify-content: space-between;
+  align-items: center; */
+}
+
+.todo-item {
+  display: flex;
+  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 10px;
 }
 
 .todo-text {
@@ -20,5 +55,4 @@
 .success-btn,
 .delete-btn {
   margin-left: 8px;
-  
 }

@@ -31,10 +31,10 @@ function renderTodo(todo) {
   }
 
   const completeBtn = document.createElement('button');
-  completeBtn.textContent = '완료';
   completeBtn.setAttribute('class', 'btn btn-primary');
   completeBtn.setAttribute('id', 'complete-btn');
   completeBtn.addEventListener('click', () => toggleComplete(todo));
+  completeBtn.textContent = isCompleted ? '완료 취소' : '완료';
 
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = '삭제';
@@ -42,13 +42,14 @@ function renderTodo(todo) {
   deleteBtn.setAttribute('id', 'del-btn');
   deleteBtn.addEventListener('click', () => deleteTodo(todoId));
 
-  // const wrapDiv = document.createElement('div');
-  // wrapDiv.setAttribute('class');
+  const div = document.createElement('div');
+  div.setAttribute('class','input-container');
+  
 
   li.append(span, completeBtn, deleteBtn); //append만 한줄로 가능
 
   todoList.append(li);
-  //데이터 넣어주기
+
   span.textContent = todo.content;
 }
 
