@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="
+    https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
+    "></script>
+  </head>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column; /* 자식 조정*/
+      justify-content: center;
+      /* align-items: center; */
+      width: 600px;
+    }
+
+    .flex-container {
+      display: flex;
+      justify-content: center;
+
+      /* align-items: center; */
+    }
+
+    .flex-container-2 {
+      display: flex;
+      justify-content: start;
+
+      /* align-items: center; */
+    }
+
+    .box {
+      width: 100px;
+      height: 50px;
+      border: solid 1px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="flex-container">
+        <div class="col">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+        </div>
+        <div class="col">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+        </div>
+        <div class="col">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+        </div>
+        <div class="col">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <button id="assignBtn">랜덤 배정</button
+        ><button id="resetRtn">RESET</button>
+      </div>
+    </div>
+
+    <script>
+      const names = [
+        '가경식',
+        '강경훈',
+        '김동훈',
+        '김상호',
+        '노영재',
+        '박재훈',
+        '박종빈',
+        '박하은',
+        '서승덕',
+        '오예진',
+        '원성준',
+        '육슬찬',
+        '윤대정',
+        '이상호',
+        '이재현',
+        '이태영',
+        '임수빈',
+        '임유진',
+        '정명훈',
+        '정승연',
+        '정여원',
+        '최원호',
+        '차윤선',
+      ];
+
+      // 특정 공간을 제한 주는건 dom요소로도 가능!
+      // 띄어쓰기 자손, 꺽쇠 자손
+      const divs = document.querySelectorAll('div.box');
+      // divs.forEach((div, idx) => {
+      //   div.addEventListener('click', () => {
+      //     console.log(idx);
+      //     div.textContent = 'X';
+      //   });
+      // });
+      for (let div of divs) {
+        div.addEventListener('click', () => {
+          div.textContent = div.textContent === 'X' ? '' : 'X';
+        });
+      }
+
+      //이름 배정
+      const assignBtn = document.querySelector('#assignBtn');
+      assignBtn.addEventListener('click', (event) => {
+        let suffledNames = _.shuffle(names);
+
+        //X칸인 곳 제외하고 이름을 배정
+        for (div of divs) {
+          if (div.textContent === 'X') {
+            console.log(111);
+            continue;
+          }
+          div.textContent = suffledNames.pop();
+        }
+      });
+
+      //RESET 버튼
+      const resetRtn = document.querySelector('#resetRtn');
+
+      resetRtn.addEventListener('click', (event) => {
+        const boxs = document.querySelectorAll('.box');
+        console.log(boxs);
+        for (let box of boxs) {
+          console.log('태그들 내부');
+          box.textContent = '';
+        }
+      });
+    </script>
+  </body>
+</html>
