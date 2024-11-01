@@ -18,8 +18,6 @@ function renderTodo(todo) {
   const todoId = todo.id;
   const isCompleted = todo.completed;
 
-  console.log(typeof todoId);
-  console.log('render todo 호출');
   const todoList = document.querySelector('#todo-list');
 
   const li = document.createElement('li');
@@ -144,7 +142,14 @@ async function deleteTodo(id) {
 
 //Todo 전체 삭제하기
 async function deleteAllTodo() {
-  confirm('정말로 다 삭제하시겠습니까?');
+  const isConfirmed = confirm('정말로 다 삭제하시겠습니까?');
 
-  const response = await fetch('');
+  if (!isConfirmed) return;
+
+  const todos = await fetchTodos();
+  const todoIds = todos.map((todo) => todo.id);
+
+  todoIds.forEach((todoId) => {
+    deleteTodo(todoId);
+  });
 }
