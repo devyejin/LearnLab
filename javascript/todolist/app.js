@@ -36,7 +36,7 @@ function renderTodo(todo) {
   completeBtn.setAttribute('class', 'btn btn-primary');
   completeBtn.setAttribute('id', 'complete-btn');
   completeBtn.addEventListener('click', () => toggleComplete(todo));
-  completeBtn.textContent = isCompleted ? '미완료' : '완료';
+  completeBtn.textContent = isCompleted ? '완료 취소' : '완료';
 
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = '삭제';
