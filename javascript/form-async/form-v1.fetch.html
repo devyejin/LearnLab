@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <form action="https://jsonplaceholder.typicode.com/posts" method="post"> -->
+    <!-- 비동기로 처리할 때, form태그는 시맨틱의미로만 동작, url과 method는 숨기는게 더 좋음 -->
+    <form action="" method="">
+      <div>title</div>
+      <input type="text" name="title" />
+      <div>body</div>
+      <input type="text" name="body" />
+      <input type="submit" />
+    </form>
+    <script>
+      const form = document.querySelector('form');
+      form.addEventListener('submit', (e) => {
+        // form의 submit 이벤트시 form 데이터가 서버로 전송되며 새로고침이 발생
+        // 새로고침 되는 기본동작을 막아준다.
+        e.preventDefault();
+
+        const title = document.querySelector('input[name=title]').value;
+        const body = document.querySelector('input[name=body]').value;
+
+        // fetch-then-catch 메서드를 사용해서 비동기식 처리를 한 경우
+        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+          method: 'POST',
+          body: JSON.stringify({
+            title: title,
+            body: body,
+            userId: 1,
+          }),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        })
+          .then((Response) => response.json())
+          .then((json) => console.log(json))
+          .catch((error) => console.error(error));
+      });
+    </script>
+  </body>
+</html>
