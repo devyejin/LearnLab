@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', initTodos);
 
 // Todo 추가 버튼 클릭 이벤트 리스너
 const addTodoBtn = document.querySelector('#add-todo');
-addTodoBtn.addEventListener('click', (e) => addTodo(e));
+addTodoBtn.addEventListener('click', addTodo);
 
 //Todo 전체 삭제 버튼 클릭 이벤트 리스너
 const delTodoAllBtn = document.querySelector('#delete-all');
@@ -15,14 +15,17 @@ delTodoAllBtn.addEventListener('click', deleteAllTodo);
 
 // 개별 Todo 요소를 화면에 그리는 함수
 function renderTodo(todo) {
-  const todoId = todo.id;
-  const isCompleted = todo.completed;
+  const { id, content, completed: isCompleted } = todo;
+  console.log(content);
+  console.log(isCompleted);
+  // const id = todo.id;
+  // const isCompleted = todo.completed;
 
   const todoList = document.querySelector('#todo-list');
 
   const li = document.createElement('li');
   li.setAttribute('class', 'todo-item');
-  li.setAttribute('id', `todoId-${todoId}`);
+  li.setAttribute('id', `todoId-${id}`);
 
   const span = document.createElement('span');
   span.setAttribute('class', 'todo-text');
@@ -42,7 +45,7 @@ function renderTodo(todo) {
   deleteBtn.textContent = '삭제';
   deleteBtn.setAttribute('class', 'btn btn-danger');
   deleteBtn.setAttribute('id', 'del-btn');
-  deleteBtn.addEventListener('click', () => deleteTodo(todoId));
+  deleteBtn.addEventListener('click', () => deleteTodo(id));
 
   const div = document.createElement('div');
   div.setAttribute('class', 'input-container');
@@ -56,7 +59,7 @@ function renderTodo(todo) {
 
 //Todo 데이터 조회
 async function fetchTodos() {
-  const response = await fetch('http://localhost:3000/todos');
+  const response = await fetch(URL);
   const data = await response.json();
   return data;
 }
@@ -85,7 +88,7 @@ async function addTodo(e) {
     return;
   }
 
-  const response = await fetch(`http://localhost:3000/todos`, {
+  const response = await fetch(URL, {
     method: 'POST',
     body: JSON.stringify({
       content: todo,
@@ -97,6 +100,9 @@ async function addTodo(e) {
   const data = await response.json();
   console.log(data);
   console.log('post 요청 후');
+
+  //여기서 랜더링 안해줬는데 어떻게 출력됐지...?? <-- open live server는 동기화떄문에 재호출된거였음 '
+  renderTodo(data);
 }
 
 // Todo 완료 상태 토글 (PATCH 요청)
