@@ -3,11 +3,16 @@
     {
       "id": 1,
       "content": "ㅋㅊㅌㅊ",
-      "completed": false
+      "completed": true
     },
     {
       "id": 2,
       "content": "ㅋㅊㅌㅊㅌㅊㅌㅊ",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "content": "ㅋㅊㅌㅊㅌㅊㅌ5ㅊ",
       "completed": false
     }
   ]
