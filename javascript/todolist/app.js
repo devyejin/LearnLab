@@ -13,6 +13,13 @@ addTodoBtn.addEventListener('click', addTodo);
 const delTodoAllBtn = document.querySelector('#delete-all');
 delTodoAllBtn.addEventListener('click', deleteAllTodo);
 
+//단건 조회에서, 전체조회에서 활용을 위해 renderTodos, renderTodo로 분리 
+function renderTodos(todos) {
+  todos.forEach((todo) => {
+    renderTodo(todo);
+  });
+}
+
 // 개별 Todo 요소를 화면에 그리는 함수
 function renderTodo(todo) {
   const { id, content, completed: isCompleted } = todo;
@@ -70,9 +77,7 @@ async function initTodos() {
 
   const todos = await fetchTodos();
 
-  todos.forEach((todo) => {
-    renderTodo(todo);
-  });
+  renderTodos(todos);
 }
 
 // Todo 추가하기 (POST 요청)
