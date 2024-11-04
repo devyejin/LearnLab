@@ -2,17 +2,12 @@
   "todos": [
     {
       "id": 1,
-      "content": "ㅋㅊㅌㅊ",
+      "content": "ddd",
       "completed": true
     },
     {
       "id": 2,
-      "content": "ㅋㅊㅌㅊㅌㅊㅌㅊ",
-      "completed": false
-    },
-    {
-      "id": 3,
-      "content": "ㅋㅊㅌㅊㅌㅊㅌ5ㅊ",
+      "content": "dddd",
       "completed": false
     }
   ]
