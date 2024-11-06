@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>버튼</button>
+    <script>
+      // this의 경우 콜백함수 형태에 따라 달라지므로, this보다는 event.target을 이용하는게 좋다(?)
+      const button = document.querySelector('button');
+      button.addEventListener('click', (event) => {
+        console.log(typeof event);
+        console.log(event.target);
+        console.log(this); // window 객채
+      });
+
+      button.addEventListener('click', function (event) {
+        console.log(event.target); //<button>버튼</button>
+        console.log('일반함수', this); //<button>버튼</button>
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+* {
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.header > nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header > nav > ul {
+  display: flex;
+  align-items: center;
+}
+
+.header > nav > ul > li {
+  margin: 20px;
+  list-style: none;
+}
+
+.menu > a {
+  display: flex;
+  justify-content: space-between;
+}
+
+img {
+  width: 100%;
+}
+
+.main-container {
+  width: 65%;
+}
+
+main > section {
+  display: flex;
+  align-items: flex-start;
+}

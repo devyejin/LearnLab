@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="container">
+      <p id="first">첫 번째 문단</p>
+      <p class="second">두 번째 문단</p>
+
+      <h1>제목</h1>
+    </div>
+    <script>
+      //태그의 경우 NodeList를 반환
+      const pTags = document.querySelectorAll('p');
+
+      console.log(pTags); //찍어봤을 때 NodeList 이상한 모양인 이유는 배열이 아니라 배열같은 NodeList라서!
+      for (p of pTags) {
+        console.log(p);
+      }
+
+      pTags.forEach((p, idx) => {
+        console.log(`idx : p : ${idx} ${p.textContent}`);
+      });
+
+      const firstParagraph = document.querySelector('#first');
+      console.log(firstParagraph.textContent); // 첫 번째 문단
+
+      const secondParagraph = document.querySelector('.second');
+      console.log(secondParagraph.textContent); // 두 번째 문단
+
+      console.log('----------------');
+      const h1 = document.querySelector('h1');
+      // h1.setAttribute('textContent', '변경한 제목'); //안되나봄
+      h1.textContent = '변경한 제목';
+    </script>
+  </body>
+</html>

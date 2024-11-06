@@ -1,6 +1,6 @@
 // http://apis.data.go.kr/B552584/ArpltnInforInqireSvc
 
-async function getAirData() {
+async function getDustData() {
   try {
     const baseURL =
       'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty';
@@ -12,6 +12,7 @@ async function getAirData() {
     const sidoName = '서울';
     const ver = '1.0';
 
+    //URL을 이렇게 힘들기 보기보다는 '미리보기'이용
     let queryParams =
       '?' +
       encodeURIComponent('serviceKey') +
@@ -51,7 +52,7 @@ async function getAirData() {
   }
 }
 
-getAirData();
+getDustData();
 
 // request(
 // {
