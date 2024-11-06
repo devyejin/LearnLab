@@ -1,0 +1,30 @@
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: darkslategray;
+  height: 60px;
+  color: #ffffff;
+  border-color: black;
+}
+
+.brand {
+  font-weight: 500;
+  font-size: 2rem;
+  margin-left: 20px;
+}
+
+.menu {
+  font-weight: 100;
+  font-size: 1.5rem;
+  /* margin: 30px; */
+}
+
+.item-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 200px;
+  margin-right: 20px;
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+      }
+
+      .container {
+        margin: 1rem;
+        padding: 1rem;
+      }
+
+      .display {
+        display: none; /* hidden은 안먹히는데 이유는???? 알려고하지말기, display속성은 none / visibility속성은 hidden*/
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- html 코드도 자유롭게 수정하세요! -->
+
+    <!-- button을 클릭하면 원본 텍스트가 "텍스트가 바뀜"으로 변하도록 구현하시오. -->
+    <div class="container">
+      <div id="firstText">바뀔 예정인 텍스트</div>
+      <button id="firstButton">클릭</button>
+    </div>
+    <script>
+      //1. 버튼 필요
+      //2. 버튼 클릭시 동작
+      //3. 동작
+      //   원본 텍스트를 변경해라
+      const firstButton = document.querySelector('#firstButton');
+      const firstText = document.querySelector('#firstText');
+      firstButton.addEventListener('click', (event) => {
+        firstText.textContent = '텍스트가 바뀜';
+        console.log(event.target);
+      });
+
+      //선택자를 container에 id 선택자를 주고, querySelector에서 #firstPrac > button 으로 잡아도 된다.
+    </script>
+
+    <!-- 무언가를 클릭하면 원본 텍스트가 빨간색으로, 다른 무언가를 클릭하면 원본 텍스트가 파란색으로 변하도록 구현하시오. -->
+    <div class="container" id="color-div">
+      <div id="color-change">이 텍스트의 색상을 바꾸세요!</div>
+    </div>
+    <script>
+      const divTag = document.querySelector('#color-div');
+      const textTag = document.querySelector('#color-change');
+      textTag.addEventListener('click', (event) => {
+        console.log(textTag.style.color);
+        console.log(event.target);
+        // togle이용할거면 classList활용
+        // textTag.style.color === 'red' ? 'blue' : 'red'; //값 할당 안하고 비교만 했음
+        textTag.style.color = textTag.style.color === 'red' ? 'blue' : 'red';
+      });
+    </script>
+
+    <!-- 무언가를 클릭하면 원본 텍스트가 빨간색으로, 다른 무언가를 클릭하면 원본 텍스트가 파란색으로 변하도록 구현하시오.
+         text클릭하면 바뀌게 설정했던 것  
+    -->
+    <div class="container" id="secondContainer">
+      <div>이 텍스트의 색상을 바꾸세요!</div>
+    </div>
+    <script>
+      const container = document.querySelector('#secondContainer');
+
+      //무언가(버튼) 추가한다.
+      const changeBtn = document.createElement('button');
+      changeBtn.textContent = '폰트 색상 변경';
+      container.append(changeBtn);
+
+      //텍스트
+      const text = document.querySelector('#secondContainer > div');
+
+      //버튼을 클릭하면 텍스트 색상이 변화한다.
+      changeBtn.addEventListener('click', () => {
+        text.style.color = text.style.color === 'red' ? 'blue' : 'red';
+      });
+    </script>
+
+    <!-- 더블클릭하면 블루, 클릭하면 레드로도 해보기 -->
+
+    <!-- button을 클릭하면 텍스트가 보였다 안보였다 바뀌도록 구현하시오. -->
+    <!-- display : hidden 속성 및 class를 활용합니다. -->
+    <div class="container" id="thirdContainer">
+      <div>보였다 안보였다</div>
+      <button>클릭</button>
+    </div>
+    <script>
+      const thirdContainer = document.querySelector('#thirdContainer');
+      const thirdText = document.querySelector('#thirdContainer > div');
+      const thirdButton = document.querySelector('#thirdContainer > button');
+      console.log(thirdButton);
+      console.log(thirdText);
+
+      // 클래스에 대한 토글 기능을 이용(기본값이 있으니까) 정말 케이스가 단 두개인 경우 토글은 문제 없는데, 케이스가 더 존재할 수 있다면 문제임
+      thirdButton.addEventListener('click', () => {
+        thirdText.classList.toggle('display');
+        console.log(thirdText);
+      });
+    </script>
+
+    <!-- 입력을 하면 입력한 text가 아래의 div태그에 표현되도록 바꾸시오. -->
+    <!-- hint : input의 입력값은 value로 표현된다. -->
+    <div class="container" id="fourthContainer">
+      <input type="text" />
+      <div></div>
+    </div>
+    <script>
+      const fourthContainer = document.querySelector('#fourthContainer');
+      // 연습은 > 이런식으로 접근하지만 div, input같이 흔한 태그에 이런식으로 접근하지 말기
+      const div = document.querySelector('#fourthContainer > div');
+
+      const input = document.querySelector('#fourthContainer > input');
+      input.addEventListener('input', (event) => {
+        let target = event.target;
+        let value = target.value; //값 불러오기
+        // console.log(textValue);
+        div.textContent = value;
+        fourthContainer.append(div);
+      });
+      // console.log(value);
+    </script>
+
+    <!-- 마우스를 올리면 배경색이 빨간색으로 변하고, 내리면 다시 검정색으로 변하는 기능을 구현하시오. -->
+    <div class="container" id="forthyContainer">
+      <div class="box"></div>
+    </div>
+    <script>
+      const forthyContainer = document.querySelector('#forthyContainer');
+      const boxTag = document.querySelector('#forthyContainer > div');
+
+      boxTag.addEventListener('mouseover', (event) => {
+        // console.log('이벤트 감지');
+        boxTag.style.backgroundColor = 'red';
+      });
+
+      boxTag.addEventListener('mouseout', (event) => {
+        boxTag.style.backgroundColor = 'black';
+      });
+    </script>
+
+    <!-- 버튼을 누르면 숫자가 1 증가하는 기능을 구현하시오 -->
+    <div class="container" id="container6">
+      <div>0</div>
+      <button>버튼</button>
+    </div>
+    <script>
+      const container6 = document.querySelector('#container6');
+      const div6 = document.querySelector('#container6 > div');
+      const button6 = document.querySelector('#container6 > button');
+
+      let num = 0;
+      button6.addEventListener('click', (event) => {
+        num++;
+        div6.textContent = num;
+      });
+    </script>
+
+    <!-- 버튼을 누르면 숫자가 1 증가하는 기능을 구현하시오 -->
+    <!-- 시작값이 0 이 아닐 수 있으니까 div안에 있는 값을 가져다 쓰는게 좋을 수 있음 -->
+    <div class="container" id="container61">
+      <div>-10</div>
+      <button>버튼</button>
+    </div>
+    <script>
+      const container61 = document.querySelector('#container61');
+      const div61 = container61.querySelector('div');
+      const button61 = container61.querySelector('button');
+
+      button61.addEventListener('click', (e) => {
+        let num = parseInt(div61.textContent);
+        num += 1;
+        div61.textContent = num;
+      });
+    </script>
+
+    <!-- 색상을 입력하면 텍스트의 색이 변하는 기능을 구현하시오. -->
+    <div class="container" id="container7">
+      <h1>what color am I</h1>
+      <input type="text" />
+    </div>
+    <script>
+      const container7 = document.querySelector('#container7');
+      const h1 = container7.querySelector('#container7 > h1');
+      const input7 = container7.querySelector('#container7 > input');
+
+      input7.addEventListener('input', (e) => {
+        const target = e.target;
+        let inputColor = target.value;
+        console.log(target, inputColor);
+
+        h1.style.color = inputColor;
+      });
+    </script>
+  </body>
+</html>

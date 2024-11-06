@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      box-sizing: border-box;
+      width: 700px;
+      border-style: dashed;
+      border-width: medium;
+      text-align: center; /* container 내의 img 가운데 정렬 */
+      height: auto;
+      display: inline-block; /* 이미지랑 하단div 하나의 박스로 취급*/
+    }
+
+    .bg-green {
+      background-color: green;
+    }
+
+    .container img {
+      width: 100%; /* 컨테이너 내에서 비율 */
+      display: block; /* 이미지 아래 공백 제거*/
+    }
+
+    .title {
+      margin-top: 0px;
+    }
+
+    .caption {
+      margin-top: 0px;
+      height: 70px;
+      text-align: center;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+
+    .img-wrapper {
+      display: inline-block;
+      width: 90%;
+    }
+
+    h3 {
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-align: left;
+      margin-bottom: 0px;
+      margin-top: 36px;
+    }
+
+    .info-text {
+      text-align: left;
+      background-color: beige;
+    }
+
+    footer {
+      width: 100%; /* 내부에 있으니까 %로 맞추는게 나음*/
+      height: 43px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1 class="title bg-green">오늘의 명소</h1>
+      <div class="img-wrapper">
+        <img src="assets/성산일출봉.png" alt="성산일출봉" />
+        <p class="caption bg-green">
+          제주도<br />
+          성산 일출봉
+        </p>
+        <h3>제주도 서귀포시 성산읍</h3>
+        <hr />
+        <p class="info-text">
+          성산일출봉은 제주도의 다른 오름들과는 달리 마그마가 물속에서
+          분출하면서 만들어진 수성화산체다.화산활동시 분출된 뜨거운 마그마가
+          차가운 바닷물과 만나면서 화산재가 습기를 많이 머금어 끈끈한 성질을
+          띄게 되었고, 이것이 층을 이루면서 쌓인 것이 성산일출봉이다.
+        </p>
+      </div>
+      <footer class="bg-green"></footer>
+    </div>
+  </body>
+</html>

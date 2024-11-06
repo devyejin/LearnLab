@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px;
+        width: 200px;
+      }
+
+      .card-title {
+        font-weight: bold;
+      }
+
+      .card-body {
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 아래 데이터를 사용해서 container 안에 카드 형태의 요소들을 생성하세요 -->
+    <div id="cardContainer"></div>
+    <script>
+      const cards = [
+        { title: '카드1', content: '내용1', color: '#ffeeee' },
+        { title: '카드2', content: '내용2', color: '#eeffee' },
+        { title: '카드3', content: '내용2', color: '#eeeeff' },
+      ];
+      // 각 카드는 다음 구조를 가져야 합니다:
+      // <div class="card" style="background-color: #색상">
+      //   <div class="card-title">제목</div>
+      //   <div class="card-body">내용</div>
+      // </div>
+
+      //먼저 하나의 카드를 완성한 후 반복문으로 처리한다.
+
+      const cardContainerTag = document.querySelector('#cardContainer');
+
+      cards.forEach((cardData) => {
+        const { title, content, color } = cardData; //구조분해할당
+        console.log(cardData);
+
+        //카드를 만든다
+        const cardTag = document.createElement('div');
+        cardTag.classList.add('card');
+        cardTag.style.backgroundColor = color;
+
+        //카드 타이틀을 만든다
+        const cardTitleTag = document.createElement('div');
+        cardTitleTag.classList.add('card-title');
+        cardTitleTag.textContent = title;
+
+        //카드 바디를 만든다
+        const cardBodyTag = document.createElement('div');
+        cardBodyTag.classList.add('card-body');
+        cardBodyTag.textContent = content;
+
+        //카드 컨테이너에 넣는다
+        cardTag.append(cardTitleTag, cardBodyTag);
+        cardContainerTag.append(cardTag);
+      });
+    </script>
+  </body>
+</html>

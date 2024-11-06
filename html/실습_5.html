@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .title {
+        color: red;
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .box {
+        width: 200px;
+        height: 200px;
+      }
+
+      .bg-yellow {
+        background-color: yellow;
+      }
+
+      .bg-green {
+        background-color: green;
+      }
+
+      .align-left {
+        padding: 20px 80px 80px 20px;
+        margin: 20px;
+      }
+
+      .align-center {
+        padding: 40px 50px 60px 50px;
+        margin: 50px;
+      }
+
+      .box1 {
+        box-sizing: content-box;
+        width: 200px;
+        height: 100px;
+        padding: 20px;
+        background-color: lightblue;
+      }
+
+      .box2 {
+        box-sizing: border-box;
+        width: 200px;
+        height: 100px;
+        padding: 20px;
+        border: 10px solid black;
+        background-color: lightgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">Hello CSS</div>
+    <div class="box bg-yellow align-left">Hello CSS</div>
+    <div class="box bg-green align-center">Hello CSS</div>
+
+    <div class="box1">콘텐츠 영역만 정의</div>
+    <div class="box2">padding border 고려</div>
+  </body>
+</html>

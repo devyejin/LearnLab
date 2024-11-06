@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <h1>숙소 예약</h1>
+    </div>
+    <form action="">
+      <h2>신상 정보</h2>
+      <div>
+        <label for="name">이름 : </label>
+        <input type="text" name="name" id="name" placeholder="이름 입력" />
+      </div>
+      <div>
+        <label for="email">이메일 : </label>
+        <input type="email" name="email" id="email" placeholder="이메일 입력" />
+      </div>
+      <div>
+        <label for="picture">예약자 사진 : </label>
+        <input type="file" />
+      </div>
+      <hr />
+
+      <div>
+        <h2>상세 정보</h2>
+        <div>
+          <h3>선호 객실 타입</h3>
+          <label for="city">도시뷰 : </label>
+          <input type="checkbox" id="city" name="roomType" value="city" />
+
+          <label for="lake">레이크 뷰 : </label>
+          <input type="checkbox" id="lake" name="roomType" value="lake" />
+
+          <label for="mountin">마운틴 뷰 : </label>
+          <input
+            type="checkbox"
+            id="mountine"
+            name="roomType"
+            value="mountin"
+          />
+        </div>
+
+        <div>
+          <h3>동행자 정보</h3>
+          <label for="peer-info">인원수 : </label>
+          <input type="number" id="peer-info" name="peer" />
+        </div>
+      </div>
+
+      <div>
+        <h2>기타</h2>
+        <label for="request">요청 사항 : </label>
+        <textarea name="requestNote" id="request" rows="10"></textarea>
+      </div>
+
+      <hr />
+      <input type="submit" value="전송" />
+    </form>
+  </body>
+</html>
