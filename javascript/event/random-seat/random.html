@@ -17,11 +17,6 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
     <script src="
 https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
 "></script>
@@ -79,7 +74,10 @@ https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
         div.setAttribute('id', i);
         console.log(div);
 
-        if (i === 0 || i === 15 || i === 19 || i === 23 || i === 27) {
+        //반 자리 별도로 분리 Set 자료형에 has 나 array이용해도 됨
+        const exclusive = new Set([0, 15, 19, 23, 27]);
+
+        if (exclusive.has(i)) {
           div.textContent = '';
           divRow.append(div);
           console.log(i);
@@ -92,5 +90,10 @@ https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
         }
       }
     </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

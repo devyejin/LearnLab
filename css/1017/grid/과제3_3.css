@@ -1,0 +1,33 @@
+body {
+  text-align: center;
+  font-weight: 540;
+}
+
+h1 {
+  color: #800000;
+  font-size: 3rem;
+}
+.menu-board {
+  margin: auto;
+  width: 30%;
+}
+.menu-category {
+  font-size: 2rem;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.menu {
+  font-size: 1.5rem;
+  margin: 20px 0px 20px 0;
+  /* menu를 flex container로 보는게 맞는거같은데  */
+  display: flex;
+  justify-content: space-between;
+}
+.menu-name {
+  font-style: italic;
+}
+.menu-price {
+  margin-left: 100px;
+}
+
+/* menu-name을 flex-items로 보려면 outer menu를 flex-container로 잡아야 하는가?  */
