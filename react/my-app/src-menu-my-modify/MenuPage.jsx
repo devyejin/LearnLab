@@ -45,9 +45,11 @@ export default function MenuPage() {
     return <MenuSection type={type} menus={menus}></MenuSection>;
   });
 
-  const { categories, result } = menuData;
+  const {categories, result } = menuData 
   // categories를 순회하며 각 타입별 menus를 넘긴다.
-  categories.map((category) => {});
+  categories.map(category => {
+
+  })
 
   return (
     <>

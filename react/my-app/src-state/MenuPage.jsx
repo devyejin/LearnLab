@@ -38,16 +38,23 @@ export default function MenuPage() {
   };
 
   //Todo: 데이터 수정해서 코드도 수정해야함
-  const menuSectionsJSX = menuData.map((category) => {
-    const { type, menus } = category;
-    console.log(type);
-    console.log(menus);
-    return <MenuSection type={type} menus={menus}></MenuSection>;
-  });
+  // const menuSectionsJSX = menuData.map((category) => {
+  //   const { type, menus } = category;
+  //   console.log(type);
+  //   console.log(menus);
+  //   return <MenuSection type={type} menus={menus}></MenuSection>;
+  // });
 
   const { categories, result } = menuData;
-  // categories를 순회하며 각 타입별 menus를 넘긴다.
-  categories.map((category) => {});
+
+  // categories를 순회하며 각 타입별 menus를 넘긴다. (순회할 필요가 없는 것 같은뎅?)
+  // categories.map((category) => {
+  //   category ===
+  // });
+  const menuSectionsJSX = result.map((category) => {
+    const { type, menus } = category;
+    return <MenuSection type={type} menus={menus}></MenuSection>;
+  });
 
   return (
     <>
