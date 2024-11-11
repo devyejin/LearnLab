@@ -4,6 +4,9 @@ import PostList from '../pages/PostList';
 import RootLayout from '../RootLayout';
 import PostDetails from '../pages/PostDetails';
 import NotFound from '../pages/NotFound';
+import MusicLayout from '../MusicLayout';
+import MusicCharts from '../pages/MusicCharts';
+import MusicTop100 from '../pages/MusicTop100';
 
 //가장 기본적인 틀 (index.jsx는 default로 인식)
 //createBrowserRouter()에 path와 path에 해당하는 컴포넌트를 등록한다.
@@ -36,10 +39,22 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: '/posts',
-  //   element: <PostList />,
-  // },
+  {
+    path: '/music',
+    element: <MusicLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        index: true,
+        element: <MusicCharts />,
+      },
+      {
+        // 부모쪽에 /music 이런식으로 '/'아닌 경우에 children은 '/'붙이면 안됨
+        path: 'top100',
+        element: <MusicTop100 />,
+      },
+    ],
+  },
 ]);
 
 export default router;

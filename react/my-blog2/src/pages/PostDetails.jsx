@@ -15,11 +15,11 @@ export default function PostDetails() {
   const { post } = location.state; //이미 post는 객체인데 왜 다시 { } 객체로 감싸지?
   console.log(location.state);
   console.log(post);
-  // const { title, content } = post;
+  const { title, content } = post;
   return (
     <div>
-      {/* <h3>{title}</h3> */}
-      {/* <p>{content}</p> */}
+      <h3>{title}</h3>
+      <p>{content}</p>
     </div>
   );
 }

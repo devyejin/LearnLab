@@ -9,22 +9,14 @@
 //Layout, 내부 content 들을 지정하는건 당연히 라우트 설정하는 파일(/router.index.jsx 파일)
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom'; // Header컴포넌트로 보내서 이제 필요 없음
+import Header from './components/Header';
 
 //
 export default function RootLayout() {
   return (
     <>
-      <header>
-        <ul>
-          <li>
-            <Link to="/">HOME</Link>
-          </li>
-          <li>
-            <Link to="/posts">posts</Link>
-          </li>
-        </ul>
-      </header>
+      <Header></Header>
       <Outlet></Outlet>
       <footer></footer>
     </>
