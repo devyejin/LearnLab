@@ -41,18 +41,3 @@
   color: #888;
 } */
 
-.container {
-  display: flex;
-  /* flex-direction: row; */
-}
-
-.container > ul {
-  display: flex;
-  list-style: none; /* 기본 점 스타일 제거 */
-  padding: 0;
-  margin: 0;
-}
-
-.container li {
-  margin-right: 10px; /* 아이템 사이 간격 */
-}

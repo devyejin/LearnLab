@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import GlobalNavigationBar from '../component/public/GlobalNavigationBar';
-import '../App.css';
 import SubNavigationBar from '../component/public/SubNavigationBar';
+import Footer from '../component/public/Footer';
 
 import React from 'react';
 /**
@@ -43,11 +43,11 @@ export default function NovelLayout() {
       <div className="container">
         <GlobalNavigationBar></GlobalNavigationBar>
       </div>
-      <div className="container">
+      <div className="container sub-header">
         <SubNavigationBar subject={subject} datas={result}></SubNavigationBar>
       </div>
       <Outlet></Outlet>
-      <footer>푸터푸터 </footer>
+      <Footer></Footer>
     </>
   );
 }

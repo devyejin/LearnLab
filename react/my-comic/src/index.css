@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +65,32 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+
+.container {
+  display: flex;
+  /* justify-content: center; */
+  gap: 20px; /* 항목 간 간격 조정 */
+}
+
+.container > ul {
+  display: flex;
+  list-style: none; /* 기본 점 스타일 제거 */
+  padding: 0;
+  margin: 0;
+}
+
+.container li {
+  margin-right: 10px; /* 아이템 사이 간격 */
+}
+
+.dotremove {
+  list-style: none; /* 기본 점 스타일 제거 */
+}
+
+.global-header,
+.sub-header,
+footer {
+  border: 2px solid #000; /* 2px 두께의 검은색 테두리 */
+  padding: 1rem; /* 내부 여백 */
 }

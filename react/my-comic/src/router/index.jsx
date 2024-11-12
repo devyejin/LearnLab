@@ -6,8 +6,20 @@ import DailyWebtoons from '../pages/webtoon/DailyWebtoons';
 import NovelHome from '../pages/novel/NovelHome';
 import GenreNovels from '../pages/novel/GenreNovels';
 import NotFound from '../pages/commons/NotFound';
+import RootLayout from '../layout/RootLayout';
+import MainHome from '../pages/commons/MainHome';
 
 const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <MainHome />,
+      },
+    ],
+  },
   {
     path: '/webtoon',
     element: <WebtoonLayout />,

@@ -11,7 +11,7 @@ export default function SubNavigationBar({ subject, datas }) {
         const { category, url } = data;
         const fullUrl = getUrl(subject, url);
         return (
-          <li>
+          <li className="dotremove">
             <Link to={`${fullUrl}`}>{category}</Link>
           </li>
         );
