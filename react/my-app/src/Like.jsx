@@ -34,6 +34,7 @@ export default function Like() {
         {isLike ? '좋아요 취소 💔' : '좋아요 ❤️'}
       </button>
       <hr />
+
       {/* Button 컴포넌트 활용  */}
       <Button
         onButtonClick={() => setIsLiKe((prevIsLike) => !prevIsLike)}
