@@ -7,15 +7,17 @@ import { getUrl } from '../../utils/getUrl';
 export default function SubNavigationBar({ subject, datas }) {
   return (
     <>
-      {datas.map((data) => {
-        const { category, url } = data;
-        const fullUrl = getUrl(subject, url);
-        return (
-          <li className="dotremove">
-            <Link to={`${fullUrl}`}>{category}</Link>
-          </li>
-        );
-      })}
+      <div className="container sub-header">
+        {datas.map((data) => {
+          const { category, url } = data;
+          const fullUrl = getUrl(subject, url);
+          return (
+            <li className="dotremove">
+              <Link to={`${fullUrl}`}>{category}</Link>
+            </li>
+          );
+        })}
+      </div>
     </>
   );
 }

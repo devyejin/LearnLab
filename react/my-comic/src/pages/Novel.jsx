@@ -1,12 +1,10 @@
-import { Outlet } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import SubNavigationBar from '../component/public/SubNavigationBar';
 
-import React from 'react';
 /**
  * @todo 소설 헤더 부분 => 공통 컴포넌트로 분리하기
  */
-export default function NovelLayout() {
+export default function Novel() {
   //분리해서 필요한 데이터
   const novels = {
     subject: 'novel',
@@ -38,9 +36,7 @@ export default function NovelLayout() {
 
   return (
     <>
-      <div className="container sub-header">
-        <SubNavigationBar subject={subject} datas={result}></SubNavigationBar>
-      </div>
+      <SubNavigationBar subject={subject} datas={result}></SubNavigationBar>
       <Outlet></Outlet>
     </>
   );

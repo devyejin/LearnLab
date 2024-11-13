@@ -5,7 +5,7 @@ import SubNavigationBar from '../component/public/SubNavigationBar';
 /**
  * @todo header는 소설, 웹툰 공통 컴포넌트로 분리
  */
-export default function WebtoonLayout() {
+export default function Webtoon() {
   const days = {
     subject: 'webtoon',
     result: [
@@ -48,9 +48,7 @@ export default function WebtoonLayout() {
 
   return (
     <>
-      <div className="container sub-header">
-        <SubNavigationBar subject={subject} datas={result}></SubNavigationBar>
-      </div>
+      <SubNavigationBar subject={subject} datas={result}></SubNavigationBar>
       <Outlet></Outlet>
     </>
   );

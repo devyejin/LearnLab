@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
-import WebtoonLayout from '../layout/WebtoonLayout';
-import NovelLayout from '../layout/NovelLayout';
-import WebtoonHome from '../pages/webtoon/WebtoonHome';
-import DailyWebtoons from '../pages/webtoon/DailyWebtoons';
-import NovelHome from '../pages/novel/NovelHome';
-import GenreNovels from '../pages/novel/GenreNovels';
+import Webtoon from '../pages/Webtoon';
+import Novel from '../pages/Novel';
+import WebtoonHome from '../component/webtoon/WebtoonHome';
+import DailyWebtoons from '../component/webtoon/DailyWebtoons';
+import NovelHome from '../component/novel/NovelHome';
+import GenreNovels from '../component/novel/GenreNovels';
 import NotFound from '../pages/commons/NotFound';
 import RootLayout from '../layout/RootLayout';
 import MainHome from '../pages/commons/MainHome';
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/webtoon',
-        element: <WebtoonLayout />,
+        element: <Webtoon />,
         errorElement: <NotFound />,
         children: [
           {
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/novel',
-        element: <NovelLayout />,
+        element: <Novel />,
         errorElement: <NotFound />,
         children: [
           {
