@@ -9,6 +9,9 @@ import NotFound from '../pages/commons/NotFound';
 import RootLayout from '../layout/RootLayout';
 import MainHome from '../pages/commons/MainHome';
 
+/**
+ * RootLayout이 RootHeader를 가지고 있고, 그 안에 Outlet에서 WebtoonLayout, NovelLayout들을 갖는다.
+ */
 const router = createBrowserRouter([
   {
     path: '/',
@@ -18,37 +21,37 @@ const router = createBrowserRouter([
         index: true,
         element: <MainHome />,
       },
-    ],
-  },
-  {
-    path: '/webtoon',
-    element: <WebtoonLayout />,
-    errorElement: <NotFound />,
-    children: [
       {
-        index: true,
-        element: <WebtoonHome />,
+        path: '/webtoon',
+        element: <WebtoonLayout />,
+        errorElement: <NotFound />,
+        children: [
+          {
+            index: true,
+            element: <WebtoonHome />,
+          },
+          {
+            // 앞에 '/'붙여서 작성하면 절대주소, 안붙이면 상대주소
+            // /webtoon/:day
+            path: ':day',
+            element: <DailyWebtoons />,
+          },
+        ],
       },
       {
-        // 앞에 '/'붙여서 작성하면 절대주소, 안붙이면 상대주소
-        // /webtoon/:day
-        path: ':day',
-        element: <DailyWebtoons />,
-      },
-    ],
-  },
-  {
-    path: '/novel',
-    element: <NovelLayout />,
-    errorElement: <NotFound />,
-    children: [
-      {
-        index: true,
-        element: <NovelHome />,
-      },
-      {
-        path: ':genre',
-        element: <GenreNovels />,
+        path: '/novel',
+        element: <NovelLayout />,
+        errorElement: <NotFound />,
+        children: [
+          {
+            index: true,
+            element: <NovelHome />,
+          },
+          {
+            path: ':genre',
+            element: <GenreNovels />,
+          },
+        ],
       },
     ],
   },

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function GlobalNavigationBar() {
+//GlobalNavBar에서 RootHeader로 이름 변경
+export default function RootHeader() {
   return (
     <>
       <div className="container global-header">
