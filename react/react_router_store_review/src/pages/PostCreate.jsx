@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addPost } from '../store/slices/postsSlice';
+import { useNavigate } from 'react-router-dom';
 // 새 글 작성 입력창 만들기
 export default function CreatePost() {
   useState;
@@ -10,6 +11,8 @@ export default function CreatePost() {
   const [formData, setFormData] = useState({ title: '', content: '' });
   const dispatch = useDispatch(); // reducer의 트리거(setter를 실행 시키는 함수), 아무렇게나 setter를 호출할 수 있는게 아님!
   //dispatch는 reducer를 실행시키는 함수
+
+  const navigate = useNavigate();
 
   function handleChange(e) {
     //input의 value를 state에 넣고싶어
@@ -49,7 +52,11 @@ export default function CreatePost() {
 
     //store에 저장된 데이터를 변경할거기때문에 setter즉, reducer가 필요하다.
     //입력받은 data를 가지고 posts를 생성하는 recuder를 만들고 call 해야한다! (reducer 만들러 가자)
-    dispatch(addPost({ ...formData, id: Date.now() })); // payload로 formData를 전달 (reducer를 호출(트리거)하기 위해서는 dispatch를 활용)
+    const id = Date.now();
+    dispatch(addPost({ ...formData, id: id })); // payload로 formData를 전달 (reducer를 호출(트리거)하기 위해서는 dispatch를 활용)
+
+    //글 생성 후 1. 글 목록으로 보낸다 2. 내가 작성한 글로 보낸다. (상황에 맞는거로)
+    navigate(`/posts/${id}`);
   }
 
   return (
