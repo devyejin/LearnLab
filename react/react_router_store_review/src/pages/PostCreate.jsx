@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { addPost } from '../store/slices/postsSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 //1. 사용자로부터 새로운 게시글에 대한 입력값을 받는다.
@@ -12,6 +12,15 @@ export default function PostCreate() {
   const [formData, setFormData] = useState({ title: '', content: '' });
   const dispatch = useDispatch(); //reduce 함수 트리거(setter를 아무렇게나 호출할 수는 없다)
   const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  //비로그인자가 새 글 작성 페이지 접근하는 것을 막기
+  useEffect(() => {
+    if (!isAuthenticated) {
+      alert('로그인을 하세요');
+      navigate('/');
+    }
+  }, [isAuthenticated]); //isAuthenticated 상태가 변화할 때 마다 상태체크 (만료나 비정상적인 세션등이 존재하니까)
 
   function handleChange(e) {
     // setFormData({ //setter의 경우, 수정이 아니라 교체이기 때문에 모든 데이터를 넣어야 함
@@ -76,7 +85,6 @@ export default function PostCreate() {
     </>
   );
 }
-
 
 //1. form에 있는 action, method 속성을 통해서 서버로 데이터를 전송
 //2. data를 수집 -> ajax를 통해 fetch (✅)
