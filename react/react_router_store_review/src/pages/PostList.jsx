@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function PostList() {
   const navigate = useNavigate();
@@ -30,10 +29,8 @@ export default function PostList() {
   // ]);
 
   //2. 전역관리 store에 있는 데이터에 접근할때는 useSelector 훅을 이용
-  const posts = useSelector(state => state.posts); 
+  const posts = useSelector((state) => state.posts);
 
-  
-  
   return (
     <div>
       <h2>posts</h2>

@@ -30,7 +30,7 @@ export default function PostDetail() {
   useEffect(() => {
     //useEffect가 대신 수행할 작업
     setPost(posts.find((post) => post.id === parseInt(postId)));
-  }, []); //dependencies가 비어있을 때([])는 처음 마운트(랜더링)되었을 때만 실행
+  }, []); //dependencies가 비어있을 때([])는 처음 마운트(랜더링)되었을 때만 실행 즉, 맨 처음 화면 랜더링되고 실행되고 끝
 
   if (!post) {
     return <p>게시물을 찾을 수 없습니다.</p>;

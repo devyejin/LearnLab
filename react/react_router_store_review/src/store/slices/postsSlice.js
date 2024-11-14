@@ -23,15 +23,23 @@ const initialState = [
 ];
 
 //컴포넌트 단위에서 사용하던 useState에 비유하자면
-//const [posts, reducers] = useState(initialState) 이 느낌인것! 
+//const [posts, reducers] = useState(initialState) 이 느낌인것!
 const postsSlice = createSlice({
   name: 'posts', //useState에서의 변수명
   initialState, // useState에서의 초기값
-  reducers: { //useState에서의 setter
-
+  reducers: {
+    //useState에서의 setter
+    //Todo : 리스트.push(새로운 데이터)
+    addPost: (state, action) => {
+      //state는 내가 가지고 있는 상태(즉, posts)
+      state.push(action.payload);
+    },
+    // removePost : () => {}
   },
 });
 
 //외부에서 데이터 조회는 ok
 //데이터를 갱신할 수 있는 권한을 가진 자만이 특정 조건이나 범위에 따라 데이터를 변경할 수 있도록 setter(reducer)제공 (캡슐화)
+export const { addPost } = postsSlice.actions;
+// export const {addPost, removePost} =  postsSlice.actions;
 export default postsSlice.reducer;
