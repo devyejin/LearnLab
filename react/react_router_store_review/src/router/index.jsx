@@ -1,14 +1,15 @@
-import { createBrowserRouter } from "react-router-dom";
-import Home from "../pages/Home";
-import PostList from "../pages/PostList";
-import Hello from "../pages/Hello";
-import RootLayout from "../RootLayout";
-import PostDetail from "../pages/PostDetail";
-import NotFound from "../pages/NotFound";
+import { createBrowserRouter } from 'react-router-dom';
+import Home from '../pages/Home';
+import PostList from '../pages/PostList';
+import Hello from '../pages/Hello';
+import RootLayout from '../RootLayout';
+import PostDetail from '../pages/PostDetail';
+import NotFound from '../pages/NotFound';
+import PostCreate from '../pages/PostCreate';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <RootLayout />,
     errorElement: <NotFound />,
     children: [
@@ -17,11 +18,16 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/posts",
+        path: '/posts',
         element: <PostList />,
       },
+      // posts/:postId 가 위에 있으면 postId에 "create"가 인식되며 errorpage가 나오게됨! 위치 신경쓰기
       {
-        path: "/posts/:postId",
+        path: '/posts/create',
+        element: <PostCreate />,
+      },
+      {
+        path: '/posts/:postId',
         element: <PostDetail />,
       },
     ],

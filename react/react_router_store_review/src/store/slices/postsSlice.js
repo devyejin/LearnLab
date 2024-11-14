@@ -27,10 +27,18 @@ const initialState = [
 const postsSlice = createSlice({
   name: 'posts', //useState에서의 변수명
   initialState, // useState에서의 초기값
-  reducers: { //useState에서의 setter
-
+  reducers: { //useState에서의 setter (리듀서*들*)
+    addPost : (state,action) => { // state는 Slice가 가지고 있는 상태 즉, posts
+      state.push(action.payload);
+      console.log(action.payload);
+    }
   },
 });
+
+//addPost 함수를 export
+//리덕스 툴킷은 addPost reducer 함수 -> 액션 생성자 addPost()로 변환 -> postsSlice.actions에 넣는다.
+//즉 postsSlice.actions에는 addPost 액션 생성자가 포함되어 있다. (그냥 이렇게 사용하는구나~)
+export const {addPost} = postsSlice.actions;
 
 //외부에서 데이터 조회는 ok
 //데이터를 갱신할 수 있는 권한을 가진 자만이 특정 조건이나 범위에 따라 데이터를 변경할 수 있도록 setter(reducer)제공 (캡슐화)
