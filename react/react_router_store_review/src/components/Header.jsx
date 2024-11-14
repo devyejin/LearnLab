@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../store/slices/useInfoSlice.js';
 
 export default function Header() {
   //store에서 사용자 정보를 불러오기
@@ -18,6 +19,7 @@ export default function Header() {
   }, []);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   //미로그인시 Link의 to 이벤트를 막아야 함 , to를 사용하지 말아야하나?
   function handleClick(e) {
     if (!userInfo.isLogin) {
@@ -26,6 +28,10 @@ export default function Header() {
       navigate('/posts/create');
     }
   }
+
+  //userInfo.isLogin 정보가 false로 되면(감지하고 있으니까) 'home'으로 보내기
+  //로그인, 로그아웃 버튼 클릭시 발생하는 이벤트니까 이 이벤트에서만 관리?
+  //버튼 클릭안해도 만료될 수 있는데, 그냥 감지는 어떻게 하는가?
 
   return (
     <header>
@@ -44,12 +50,31 @@ export default function Header() {
         </li>
         {/* ({})로 묶어야하는데 {{}} 로 묶음 */}
         <button
-          onClick={() =>
-            setUserInfo((prevUserInfo) => ({
-              ...prevUserInfo,
-              isLogin: !prevUserInfo.isLogin,
-            }))
-          }
+          onClick={() => {
+            setUserInfo((prevUserInfo) => {
+              // console.log(userInfo.isLogin);
+              const isLogin = !prevUserInfo.isLogin;
+              
+              //store에 반영
+              dispatch(login({ ...userInfo, isLogin }));
+              
+              //return 부분이 useState부분 반영하는거고
+              return {
+                ...prevUserInfo,
+                isLogin: isLogin,
+              };
+            });
+            
+            // //componet는 바로 반영 아니지만, store는 바로 반영되나?
+            // //store에서 정보꺼내서 home으로 보내버리기?
+            // const userInfos = useSelector((state) => state.userInfos)
+
+           
+
+
+
+            if (!userInfo.isLogin) navigate('/posts');
+          }}
         >
           {userInfo?.isLogin ? '로그아웃' : '로그인'}
         </button>
