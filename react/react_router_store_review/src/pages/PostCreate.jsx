@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { addPost } from '../store/slices/postsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 //1. 사용자로부터 새로운 게시글에 대한 입력값을 받는다.
 //2. 입력값이 발생하면 상태관리에 반영한다.
@@ -42,7 +43,7 @@ export default function PostCreate() {
       [key]: inputValue, // key 자리는 string으로 인식하기 때문에 대괄호로 감싸준다.
     });
 
-    console.log(formData);
+    // console.log(formData);
   }
 
   //submit 이벤트 발생시, 변화된 상태를 store에 반영한다.
@@ -51,14 +52,26 @@ export default function PostCreate() {
 
     //store에 데이터를 변경할때는 reducer(setter)를 통해 한다.
     //입력받은 form데이터를 가지고 reducer를 call한다. (함수를 import)
-    const id = Date.now();
+    // const id = Date.now();
     //reducer의 트리거(호출)는 dispatch를 활용 (규칙임)
-    dispatch(addPost({ ...formData, id: id })); //payload로 데이터 전달
+    // dispatch(addPost({ ...formData, id: id })); //payload로 데이터 전달
+
+    //dispatch => axios 로 대체 (store에 저장하던걸 db서버로 )
+
+    async function createPost() {
+      const url = 'http://localhost:3000/posts';
+      const response = await axios.post(url, formData);
+      const data = response.data;
+      const id = data.id;
+
+      navigate(`/posts/${id}`);
+    }
+    createPost(); //이 동작은 useEffect가 필요없음!
 
     //글 생성 요청 후 작업
     //case1. 글 목록으로 보낸다 case2.작성한 글로 보낸다. (상황에 맞게 선택)
     // useNavigate 훅을 사용
-    navigate(`/posts/${id}`);
+    // navigate(`/posts/${id}`);
   }
 
   return (

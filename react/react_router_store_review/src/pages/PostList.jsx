@@ -1,39 +1,48 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import fetchData from '../utils/fetchData';
 
 export default function PostList() {
   const navigate = useNavigate();
 
-  //1. 기존방식 : 데이터를 컴포넌트에서 가지고 있음
-  // 이제 전역에서 가져오자
-  // const [posts, setPosts] = useState([
-  //   {
-  //     id: 1,
-  //     title: "첫 번째 프로젝트",
-  //     content:
-  //       "첫 프로젝트에서 간단한 Todo 앱을 만들었습니다. UI 구성과 상태 관리의 중요성을 배웠습니다.",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "리액트와 함께한 성장",
-  //     content:
-  //       "리액트로 컴포넌트 기반 개발을 익히고, 재사용성을 높이는 방법을 이해하게 되었습니다.",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "팀 프로젝트 경험",
-  //     content:
-  //       "팀원들과 협업하여 일정 관리 앱을 개발했습니다. Git을 활용한 버전 관리와 코드 리뷰의 중요성을 체감했습니다.",
-  //   },
-  // ]);
+  //store에 저장하던걸 -> 서버에서 가져오는 방식으로
+  // const posts = useSelector(state => state.posts);
+  const [posts, setPosts] = useState([]); //게시물'들'이니까 초기값을 배열로 받음
 
-  //2. 전역관리 store에 있는 데이터에 접근할때는 useSelector 훅을 이용
-  const posts = useSelector(state => state.posts); 
+  useEffect(() => {
+    // async function fetchPost() {
+    //   const url = 'http://localhost:3000/posts';
+    //   const response = await axios.get(url);
 
-  
-  
+    //   //리액트는 post가 없는데도 화면을 보여주다가 post가 오면 감지해서 보여줘야 함
+    //   // => state (1.useState, 2.store) => 1.useState를 사용 => 사용자가 사이트를 계속 이동하는 과정에서 데이터는 변화니까
+    //   // => 데이터는 조회할 때 마다 db에서 조회해오는게 맞음
+    //   const data = response.data;
+    //   console.log(data);
+    //   setPosts(data);
+    // }
+
+    // fetchPost();
+
+    const url = 'http://localhost:3000/posts';
+    fetchData(url, setPosts);
+  }, []);
+  //UseEffect를 사용하는 이유
+  //useEffect의 dependencies로 []를 줘서 처음 랜더링시 한 번만 실행되겠다는 조건을 주지 않으면, 데이터가 없다가 데이터 생성 -> 리랜더링 -> fetchPost실행 -> 리랜더링 -> ...무한루프
+  //그래서 []를 부여
+  //그래서 서버에서 데이터가 변경되도 내가 보고있는 게시물글 변화가 안하고 새로고침해야 업데이트되는 이유! (무한루프 빠지면 안되니까 이런식으로 구현되어있었던것)
+
+  //빈 배열에 posts 를 주면 계속 무한루프걸림
+ 
+
+  //데이터가 없을 때 임시적인 화면을 보여줄거라면 -> 해도 좋음 (에러핸들링 방법 중 하나)
+  //로딩중에는 어떻게 할 것인지 등 다양한 핸들링 가능(나중에 함)
+  // if(!posts) {
+  //   return <div>데이터 없어!</div>
+  // }
+
   return (
     <div>
       <h2>posts</h2>
