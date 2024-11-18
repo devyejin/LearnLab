@@ -8,10 +8,14 @@ import NotFound from '../pages/NotFound';
 import PostCreate from '../pages/PostCreate';
 
 const router = createBrowserRouter([
+  // not-found를 header나 이런것도 없는 위치로 잡은거고 내부로 잡고싶으면 내부에 (자기맘)
+  {
+    path: '/not-found',
+    element: <NotFound />,
+  },
   {
     path: '/',
     element: <RootLayout />,
-    errorElement: <NotFound />,
     children: [
       {
         index: true,
