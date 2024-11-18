@@ -3,6 +3,7 @@ import { addPost } from '../store/slices/postsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import postApi from '../api/postsApi';
 
 //1. 사용자로부터 새로운 게시글에 대한 입력값을 받는다.
 //2. 입력값이 발생하면 상태관리에 반영한다.
@@ -59,9 +60,12 @@ export default function PostCreate() {
     //dispatch => axios 로 대체 (store에 저장하던걸 db서버로 )
 
     async function createPost() {
-      const url = 'http://localhost:3000/posts';
-      const response = await axios.post(url, formData);
-      const data = response.data;
+      // const url = 'http://localhost:3000/posts';
+      // const response = await axios.post(url, formData);
+      // const data = response.data;
+
+      // 데이터를 가져오는 역할을 분리
+      const data = await postApi.createPost(formData);
       const id = data.id;
 
       navigate(`/posts/${id}`);

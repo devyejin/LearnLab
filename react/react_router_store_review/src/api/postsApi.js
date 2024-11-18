@@ -1,4 +1,4 @@
-import api from './axios';
+import api from './axios'; //export 이름이랑 다르게 import 가능
 // URL, method, data
 
 // 1. 리스트 GET
@@ -24,7 +24,7 @@ const postApi = {
     return response.data;
   },
 
-  createPosts: async (formData) => {
+  createPost: async (formData) => {
     const response = await api.post("",formData);
     return response.data;
   },

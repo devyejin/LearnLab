@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import fetchData from '../utils/fetchData';
+import postApi from '../api/postsApi';
 
 export default function PostDetail() {
   const { postId } = useParams();
@@ -20,12 +21,15 @@ export default function PostDetail() {
 
   //Error가 존재하면 Home으로 보내기
   useEffect(() => {
-    const url = `http://localhost:3000/posts/${postId}`;
+    // 데이터를 가져오는 역할을 분리
+    // const url = `http://localhost:3000/posts/${postId}`;
 
-    async function fetchPost(url) {
+    async function fetchPost() {
       try {
-        const response = await axios.get(url);
-        const data = response.data;
+        // const response = await axios.get(url);
+        // const data = response.data;
+        const data = await postApi.getPostById(postId);
+
         setPost(data);
       } catch (err) {
         setError(err);
@@ -40,7 +44,7 @@ export default function PostDetail() {
         setLoading(false);
       }
     }
-    fetchPost(url);
+    fetchPost();
 
     //util 컴포넌트로 분리하는게 이게 맞나?
     // const url = `http://localhost:3000/posts/${postId}`;

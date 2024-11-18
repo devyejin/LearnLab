@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import fetchData from '../utils/fetchData';
+import postApi from '../api/postsApi';
 
 export default function PostList() {
   const navigate = useNavigate();
@@ -17,11 +17,15 @@ export default function PostList() {
     async function fetchPost() {
       const url = 'http://localhost:3000/posts';
       try {
-        const response = await axios.get(url);
+        
         //리액트는 post가 없는데도 화면을 보여주다가 post가 오면 감지해서 보여줘야 함
         // => state (1.useState, 2.store) => 1.useState를 사용 => 사용자가 사이트를 계속 이동하는 과정에서 데이터는 변화니까
         // => 데이터는 조회할 때 마다 db에서 조회해오는게 맞음
-        const data = response.data;
+
+        // const response = await axios.get(url);
+        // const data = response.data;
+        //api 호출을 하는 역할을 분리 (호출 하는 함수 또한 async니까 await 키워드가 필요하고, async함수로 감싸줘야 함 )
+        const data = await postApi.getPosts()
         setPosts(data);
         // setLoading(false);
       } catch (err) {
