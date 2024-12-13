@@ -1,6 +1,7 @@
 package org.example;
 
 public class Dog {
+    static int count;
     private String name;
     private String breed;
 
@@ -21,5 +22,6 @@ public class Dog {
     public Dog(String name, String breed) {
         this.name = name;
         this.breed = breed;
+        count ++; // Dog가 생성될 때 마다 개체수가 증가
     }
 }

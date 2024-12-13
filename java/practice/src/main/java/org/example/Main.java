@@ -7,6 +7,7 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         int value = 3;
+
         Rectangle[] rectangles = new Rectangle[value];
 
         Rectangle rectangle1 = new Rectangle(100, 200);
@@ -51,23 +52,26 @@ public class Main {
 
         MP3Player ipod = new MP3Player("iPod");
 
-        ipod.volumeUp(3);
-        ipod.volumeDown();
+//        ipod.volumeUp(); //전원이 꺼졌기 때문에 Exception
+//        ipod.volumeDown();
+        ipod.powerOn();
+        ipod.volumeUp();
         ipod.getInfo();
 
+
+        System.out.println("************** static field ***************");
+//        Rectangle rectangle = new Rectangle(30, 30);
+//        System.out.println(rectangle.angelCount);
+//        System.out.println(Rectangle.angelCount);
+
+        Dog star = new Dog("star", "poddle");
+        System.out.println(star.count); // 1
+        // 사실 각각의 인스턴스에서 static 접근보다는 군집에서 접근하는게 더 적합
+        System.out.println(Dog.count); // 1
+
+        Rectangle rectangle = new Rectangle(3,5);
+        System.out.println(rectangle.angelCount); //static 변수의 경우 인스턴스가 아닌 클래스에서 접근하는게 적합함
+        System.out.println(Rectangle.angelCount);
     }
 }
 
-class Rectangle {
-    int width;
-    int height;
-
-    Rectangle(int width, int height) {
-        this.width = width;
-        this.height = height;
-    }
-
-    int calculateArea() {
-        return width * height;
-    }
-}
