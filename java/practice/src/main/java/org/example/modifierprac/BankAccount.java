@@ -21,10 +21,8 @@ public class BankAccount {
      * @param password
      * @param balance
      */
-    public BankAccount(String password, double balance) {
+    private BankAccount(String password, double balance) {
         //추가) 계좌 생성시 비밀번호 길이 validate
-
-
         this.password = password;
         this.balance = balance;
     }
@@ -34,9 +32,18 @@ public class BankAccount {
      * 계좌 비밀번호는 4자리로 설정해야한다.
      * @param password
      */
-    public BankAccount(String password) {
-
+    private BankAccount(String password) {
         this(password, 0);
+    }
+
+    /**
+     * 계좌를 개설한다. 신규 가입 금액이 0원인 경우
+     * @param password
+     * @return
+     */
+    public static BankAccount openingBankAccount(String password) {
+            validateInitialPassword(password); //여기서 예외 발생시 호출한 곳으로 넘어감
+            return new BankAccount(password);
     }
 
 
@@ -145,11 +152,14 @@ public class BankAccount {
 
     /**
      * 초기 비밀번호는 4자리로 설정해야 한다.
+     * 인스턴스 생성 이전에 검증하는 것이므로 static 메서드, 계좌 개설시에만 확인(내부에서만 사용) 하므로 private
      * @param password
      * @return
      */
-    public static boolean validateInitialPassword(String password) {
-        return password.length() == 4;
+    private static void validateInitialPassword(String password) {
+        if (password == null || password.length() != 4) {
+            throw new IllegalArgumentException("Password length must be four!");
+        }
     }
 
 
