@@ -22,6 +22,23 @@ public class Main {
 
         cat.grr();
 
+
+        System.out.println("***** Vehicle ******");
+        Bus bus = new Bus("bus-no-1");
+        bus.boardPassenger(30);
+        bus.getOffPassenger(10);
+
+        Truck truck = new Truck("truck-no-1");
+        truck.load(300);
+        truck.unload(10);
+
+        Brucks brucks = new Brucks("buck-no-1");
+        brucks.boardPassenger(20);
+        brucks.getOffPassenger(10);
+        brucks.load(20);
+        brucks.unload(10);
+
+
     }
 
     //강아지를 울게 시키는 기능
