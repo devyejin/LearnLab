@@ -19,6 +19,7 @@ public class Character {
     protected double expDelta;
 
     /**
+     * 기본 캐릭터 용도
      * 기본 체력은 100, 레벨은 1로 설정한다.
      * @param name
      */
@@ -26,16 +27,22 @@ public class Character {
         this(name, 1, 100, 100);
     }
 
+    /**
+     * Warrior, Mage 등 다르 캐릭터한테 공개할 용도
+     * @param name
+     * @param max_hp
+     */
     public Character(String name, int max_hp) {
-        this(name, 1, max_hp, max_hp);
+        this(name, max_hp, 1, 100);
     }
 
-    public Character(String name, int level, int max_hp, int curHp) {
+    //내부에서만 쓰는건 숨기는게 좋음(만약 자식한테 공개할꺼라면 protected, 아니라면 private)
+    private Character(String name, int max_hp, int level, int curHp) {
         this.name = name;
-        this.level = level;
         this.max_hp = max_hp;
+        this.level = level;
         this.curHp = curHp;
-        this.expDelta = 10;
+        this.expDelta = 10; //경험치 증가폭
     }
 
     public Character() {}
